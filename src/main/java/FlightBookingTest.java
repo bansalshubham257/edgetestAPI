@@ -6,19 +6,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class FlightBookingTest {
-
-    WebDriver driver = new ChromeDriver();
-
+	
+    WebDriver driver;
+    
+    //...................Adding Before Test Method................
+    
+    @BeforeTest
+    public void setDriver() {
+    	 setDriverPath();
+    	 driver = new ChromeDriver();
+    }
 
     @Test
     public void testThatResultsAppearForAOneWayJourney() {
 
-        setDriverPath();
+       
         driver.get("https://www.cleartrip.com/");
         waitFor(2000);
         driver.findElement(By.id("OneWay")).click();
